@@ -10,7 +10,7 @@ export class AppComponent{
 
   @ViewChild('quickCash') quickCash:any;
 
-  title = 'OpenFinAsgn';
+  title = 'Open Finance';
   currentIncome:number = 0;
   currentExpense:number = 0;
   loanAmt:number = 100000;
