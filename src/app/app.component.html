@@ -1,0 +1,156 @@
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper-div">
+        <div>
+            <nav>
+                <div class="header-div">
+                    <img style="opacity: 1;" src="assets/Images/logo.png" alt="Logo" class="logo">
+                    <ul class="menu-options">
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Solutions</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li>
+                            <div><button id="login" class="light-bg-btn" type="button">Login</button></div>
+                        </li>
+                        <li>
+                            <div><button id="start" type="button">Get Started</button></div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="img-left-div">
+                <div style="display: flex;flex-direction: column;position: absolute;">
+                    <img class="left-top-img" src="assets/Images/simple.svg" alt="Simple">
+                    <hr id="hr-line">
+                </div>
+                <br><br>
+                <div class="left-img-cont">
+                    <div style="position:relative;">
+                        <img class="left-img-3" src="assets/Images/blob-small.svg" alt="">
+                        <div style="position: absolute;margin-top: -50%; margin-left: -3%;">
+                            <img class="left-img-1" src="assets/Images/collect_img-video.png" alt="Relationship">
+                            <img class="left-img-2" src="assets/Images/accounting_dots.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="elig-calc-div" style="width: 50%; background-image: url(assets/Images/blob-small.svg);background-repeat: repeat-y;background-size: cover;background-position: center;">
+                <!-- <img style="height:800px; width:80%;position: relative;" src="assets/Images/blob-small.svg" alt=""> -->
+                <div style="height: 500px;width: 50%; background-color: whitesmoke;border-radius: 25px;">
+                    <div style="width: 100%;height: 30px;border-bottom: 1px solid grey;">
+                        <h3 style="margin-left: 15%;">Eligibility Calculator</h3>
+                        <br>
+                    </div>
+                    <div class="slider-container">
+                        <div>
+                            <label style="margin-left:10%;font-size:x-small; color:grey;">Monthly
+                                Income</label>
+                            <br>
+                            <b style="font-size: large;margin-left: 10%;">{{currentIncome| currency:'INR':'symbol':'1.0'}}</b>
+                            <input class="range-slider" #curIncome type="range" min="100000" max="300000" (change)="getCurrentIncome(curIncome.value)">
+                            <label style="float: left;color: gray;margin-left: 10%;">100000</label>
+                            <label style="float: right;color: gray;margin-right: 10%;">300000</label>
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            <label style="margin-left:10%;font-size:x-small; color:grey;font-family: 'Montserrat', sans-serif;">Monthly
+                                Expense</label>
+                            <br>
+                            <b style="font-size: large;margin-left: 10%;">{{currentExpense| currency:'INR':'symbol':'1.0'}}</b>
+                            <input class="range-slider" #curExpense type="range" min="100000" max="300000" (change)="getCurrentExpense(curExpense.value)">
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            <label style="margin-left:10%;width:100%;font-size:x-small; color:grey;font-family: 'Montserrat', sans-serif;">Repay
+                                Tenure</label>
+                            <select class="tenure-opt" style="font-family: 'Montserrat', sans-serif;color:black; font-weight: bold; font-size:large;" id="">
+                                <option value="sixMonths"> 6 Months </option>
+                                <option value="anYear"><b> 12 Months</b></option>
+                            </select>
+                        </div>
+                        <div style="margin-top: 30px;">
+                            <label style="color:grey;margin-left: 10%;">Do
+                                you have any existing loans?</label>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div style="margin-top: 30px;">
+                            <label style="font-size:small;margin-left: 10%;color:grey;font-family: 'Montserrat', sans-serif;">EMI
+                                of existing loan(optional)</label>
+                            <br>
+                            <input id="loan-input" type="text" placeholder="₹ 50000">
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <div class="loan-amt-container">
+                    <div class="text-wrapper">
+                        <label style="opacity: 0.8; color: white;">Loan amount</label>
+                        <br>
+                        <label style="font-size: larger; color: white;">{{loanAmt| currency:'INR':'symbol':'1.0'}}</label>
+                        <br><br>
+                        <label style="opacity: 0.8; color: gray; color: white;">Your EMI will be</label>
+                        <br>
+                        <label style="font-size: larger; color: white;">{{emiAmt | currency:'INR':'symbol':'1.0'}}</label>
+                        <div style="margin-top: 20%;text-align: center;"><button class="light-bg-btn" id="money-btn" type="button" style=" color: #663399;">GET MONEY</button></div>
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br>
+        </div>
+        <div class="parent-container" style="margin-top:150px;background-image: url(assets/Images/sol_wave_bg.svg);background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="cards-container">
+                <div #quickCash (mouseover)="isHover=true" (mouseleave)="isHover=false" [ngStyle]="{backgroundColor:isHover===true? '#663399':'white',color:isHover===true? 'white':'black'}">
+                    <img class="img-cls" src="assets/Images/Get_Paid_Instantly.png" alt="">
+                    <br>
+                    <b>Quick cash disubursement</b>
+                    <p>Get terms loans that your business needs within 72 hours</p>
+                </div>
+                <div style="height: 230px;" (mouseover)="isHover1=true" (mouseleave)="isHover1=false" [ngStyle]="{backgroundColor:isHover1===true? '#663399':'white',color:isHover1===true? 'white':'black'}">
+                    <img class="img-cls" src="assets/Images/Low_interest_rate.png" alt="">
+                    <br>
+                    <b>Low-interest rate</b>
+                    <p>Achieve your financial goals with an amazing interest rate starting at 13% per annum</p>
+                </div>
+                <div style="height: 230px;" (mouseover)="isHover2=true" (mouseleave)="isHover2=false" [ngStyle]="{backgroundColor:isHover2===true? '#663399':'white',color:isHover2===true? 'white':'black'}">
+                    <img class="img-cls" src="assets/Images/Secure_Payments.png" alt="">
+                    <br>
+                    <b>Zero Paperwork</b>
+                    <p>Get started instantly by submitting only your basic details & bank statements</p>
+                </div>
+            </div>
+            <div class="cards-container2">
+                <div style="height: 230px;" (mouseover)="isHover3=true" (mouseleave)="isHover3=false" [ngStyle]="{backgroundColor:isHover3===true? '#663399':'white',color:isHover3===true? 'white':'black'}">
+                    <img class="img-cls" src="assets/Images/Get_Paid_Instantly.png" alt="">
+                    <br>
+                    <b>Ace your business finances</b>
+                    <p>Manage banking, accounting & everything in between, on one platform</p>
+                </div>
+                <div (mouseover)="isHover4=true" (mouseleave)="isHover4=false" [ngStyle]="{backgroundColor:isHover4===true? '#663399':'white',color:isHover4===true? 'white':'black'}">
+                    <img class="img-cls" src="assets/Images/Get_Paid_Instantly.png" alt="">
+                    <br>
+                    <b>Loans to fight COVID-19</b>
+                    <p>Zero EMI for first 3 months on Back-to-Business loans of upto 1 lakh</p>
+                </div>
+            </div>
+            <div class="account-cls">
+                <h1>Boost your business with Open</h1>
+                <hr>
+                <br>
+                <p style="color: gray; margin:0;">Get your hands on a term loan that’s crafted for your business</p>
+                <br><br>
+                <div><button class="account-btn" type="button" (mouseover)="isHover5=true" (mouseleave)="isHover5=false" [ngStyle]="{backgroundColor:isHover5===true? '#663399':'white',color:isHover5===true? 'white':'#663399'}">Get an Open Account</button></div>
+            </div>
+        </div>
+    </div>
+</body>
